@@ -1,25 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const BasicContactSection = () => {
+export const BasicContactSection = ({ groom, bride }: { groom: string; bride: string }) => {
     return (
         <BasicContactContainer>
             <GBContainer>
                 <GBRow style={{ marginBottom: '16px' }}>
                     <GBLabel>신랑에게 연락하기</GBLabel>
-                    <Linked>
+                    <Linked href={`tel:${groom}`}>
                         <GBIcon src={'/images/phoneIcon.png'} alt='신랑에게 전화하기' />
                     </Linked>
-                    <Linked>
+                    <Linked href={`sms:${groom}`}>
                         <GBIcon src={'/images/smsIcon.png'} alt='신랑에게 문자하기' />
                     </Linked>
                 </GBRow>
                 <GBRow>
                     <GBLabel>신부에게 연락하기</GBLabel>
-                    <Linked>
+                    <Linked href={`tel:${bride}`}>
                         <GBIcon src={'/images/phoneIcon.png'} alt='신부에게 전화하기' />
                     </Linked>
-                    <Linked>
+                    <Linked href={`sms:${bride}`}>
                         <GBIcon src={'/images/smsIcon.png'} alt='신부에게 문자하기' />
                     </Linked>
                 </GBRow>
