@@ -17,8 +17,9 @@ components
     -   controller
     -   viewModel
     -   view
-        models
-        pages
+
+pages
+models
 
 ## 목적
 
