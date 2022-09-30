@@ -21,56 +21,84 @@ export const FamilyContact = ({
     brideMotherContact?: string;
 }) => {
     return (
-        <BasicContactContainer>
+        <FamilyContactContainer>
             <ContactRowContainer>
-                {!!groomFather && (
-                    <FamilyLabelRow>
-                        <FamilyLabelText>
-                            <FamilyLabel>아버지</FamilyLabel>
-                        </FamilyLabelText>
-                        {groomFather}
-                    </FamilyLabelRow>
+                <GroupTicker>신랑측 혼주</GroupTicker>
+                {!!groomFather && !!groomFatherContact && (
+                    <>
+                        <FamilyLabelRow>
+                            <FamilyLabelText>
+                                <FamilyLabel>아버지</FamilyLabel>
+                            </FamilyLabelText>
+                            {groomFather}
+                        </FamilyLabelRow>
+                        <ContactSolution contact={groomFatherContact} />
+                    </>
                 )}
-                {!!groomMother && (
-                    <FamilyLabelRow>
-                        <FamilyLabelText>
-                            <FamilyLabel>어머니</FamilyLabel>
-                        </FamilyLabelText>
-                        {groomMother}
-                    </FamilyLabelRow>
+                {!!groomMother && !!groomMotherContact && (
+                    <>
+                        <FamilyLabelRow>
+                            <FamilyLabelText>
+                                <FamilyLabel>어머니</FamilyLabel>
+                            </FamilyLabelText>
+                            {groomMother}
+                        </FamilyLabelRow>
+                        <ContactSolution contact={groomMotherContact} />
+                    </>
                 )}
             </ContactRowContainer>
+
             <ContactGapContainer>
                 <ContactGap>▲</ContactGap>
             </ContactGapContainer>
+
             <ContactRowContainer>
-                {!!brideFather && (
-                    <FamilyLabelRow>
-                        <FamilyLabelText>
-                            <FamilyLabel>아버지</FamilyLabel>
-                        </FamilyLabelText>
-                        {brideFather}
-                    </FamilyLabelRow>
+                <GroupTicker>신부측 혼주</GroupTicker>
+                {!!brideFather && !!birdeFatherContact && (
+                    <>
+                        <FamilyLabelRow>
+                            <FamilyLabelText>
+                                <FamilyLabel>아버지</FamilyLabel>
+                            </FamilyLabelText>
+                            {brideFather}
+                        </FamilyLabelRow>
+                        <ContactSolution contact={birdeFatherContact} />
+                    </>
                 )}
-                {!!brideMother && (
-                    <FamilyLabelRow>
-                        <FamilyLabelText>
-                            <FamilyLabel>어머니</FamilyLabel>
-                        </FamilyLabelText>
-                        {brideMother}
-                    </FamilyLabelRow>
+                {!!brideMother && !!brideMotherContact && (
+                    <>
+                        <FamilyLabelRow>
+                            <FamilyLabelText>
+                                <FamilyLabel>어머니</FamilyLabel>
+                            </FamilyLabelText>
+                            {brideMother}
+                        </FamilyLabelRow>
+                        <ContactSolution contact={brideMotherContact} />
+                    </>
                 )}
             </ContactRowContainer>
-        </BasicContactContainer>
+        </FamilyContactContainer>
     );
 };
 
-const BasicContactContainer = styled.section`
-    width: 100%;
-    background-color: #f8f8f8;
+const ContactSolution = ({ contact }: { contact: string }) => {
+    return (
+        <FamilyLabelRow>
+            <a href={`tel:${contact}`} style={{ marginRight: '16px' }}>
+                <ContactTool src={'/images/phoneIcon.png'} alt='전화하기' />
+            </a>
+            <a href={`sms:${contact}`}>
+                <ContactTool src={'/images/smsIcon.png'} alt='문자하기' />
+            </a>
+        </FamilyLabelRow>
+    );
+};
 
+const FamilyContactContainer = styled.section`
+    width: 100%;
     display: flex;
     align-items: flex-start;
+    padding-bottom: 42px;
 `;
 
 const ContactRowContainer = styled.div`
@@ -78,9 +106,10 @@ const ContactRowContainer = styled.div`
 `;
 
 const FamilyLabelRow = styled.div`
-    flex-direction: row;
+    display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 20px;
 `;
 
 const FamilyLabelText = styled.p`
@@ -91,14 +120,28 @@ const FamilyLabelText = styled.p`
 const FamilyLabel = styled.span`
     font-size: 11px;
     font-weight: 400;
+    margin-right: 6px;
 `;
 
 const ContactGapContainer = styled.div`
-    width: 60px;
-    align-items: center;
+    width: 40px;
     color: #d3d3d3;
+    display: flex;
+    justify-content: center;
 `;
 
 const ContactGap = styled.span`
     font-size: 12px;
+`;
+
+const ContactTool = styled.img`
+    width: 24px;
+    height: 24px;
+`;
+
+const GroupTicker = styled.p`
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 20px;
 `;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const BasicContactSection = ({ groom, bride }: { groom: string; bride: string }) => {
+export const BasicContact = ({ groom, bride }: { groom: string; bride: string }) => {
     return (
         <BasicContactContainer>
             <GBContainer>
@@ -33,7 +33,6 @@ const BasicContactContainer = styled.section`
     width: 100%;
     padding-top: 62px;
     padding-bottom: 62px;
-    background-color: #f8f8f8;
 
     display: flex;
     flex-direction: column;

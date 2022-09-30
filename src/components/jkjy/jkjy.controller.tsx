@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '@redux/store';
 
 import { PhotoNamePlaceMainSection } from '@components/common/main/PhotoNamePlace';
 import { BridePoem } from '@components/common/setence/BridePoem';
-import { BasicContactSection } from '@components/common/contact/BasicContact';
+import { BasicContact } from '@components/common/contact/BasicContact';
 import { FamilyContact } from '@components/common/contact/FamilyContact';
+import { WeddingGalleryList } from '@components/common/gallery/GalleryList';
+import { useDispatch } from 'react-redux';
+import { getWedding, getWeddingSaga, setWeddingId, weddingSaga } from '@redux/wedding';
 
-function JkJyController() {
+function JkJyController({ id }: { id: string }) {
+    const app = useSelector((state: RootState) => state.app);
+    const wedding = useSelector((state: RootState) => state.wedding);
+    const dispatch = useDispatch();
+
+    useLayoutEffect(() => {
+        dispatch(setWeddingId(id));
+        dispatch(getWedding(id));
+    }, []);
+
     const mainPhoto = '/images/main_jkjy.jpg';
     const groom = '이재광';
     const bride = '서지예';
@@ -24,9 +38,12 @@ function JkJyController() {
     const brideParent = {
         father: '서기영',
         mother: '최경애',
-        fatherContact: '',
-        motherContact: ''
+        fatherContact: '01045229417',
+        motherContact: '01045229417'
     };
+
+    console.log(app);
+    console.log(wedding);
     return (
         <>
             <PhotoNamePlaceMainSection
@@ -38,13 +55,18 @@ function JkJyController() {
                 place={weddingHole}
             />
             <BridePoem poem={poem.split('\n')} />
-            <BasicContactSection groom={groomContact} bride={brideContact} />
+            <BasicContact groom={groomContact} bride={brideContact} />
             <FamilyContact
                 groomFather={groomParent.father}
+                groomFatherContact={groomParent.fatherContact}
                 groomMother={groomParent.mother}
+                groomMotherContact={groomParent.motherContact}
                 brideFather={brideParent.father}
+                birdeFatherContact={brideParent.fatherContact}
                 brideMother={brideParent.mother}
+                brideMotherContact={brideParent.motherContact}
             />
+            <WeddingGalleryList countPerRow={3} images={new Array(12).fill(0)} />
         </>
     );
 }
