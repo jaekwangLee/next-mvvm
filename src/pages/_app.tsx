@@ -1,13 +1,16 @@
+import React from 'react';
 import type { AppContext, AppProps } from 'next/app';
-import Modal from 'react-modal';
-import { createStore, applyMiddleware, compose } from 'redux';
 import router from 'next/router';
+import { createStore, applyMiddleware, compose } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 import rootReducer, { rootSaga } from 'redux/store';
+import { createWrapper } from 'next-redux-wrapper';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import logger from 'redux-logger';
-import createSagaMiddleware from 'redux-saga';
-import { createWrapper } from 'next-redux-wrapper';
+import Modal from 'react-modal';
 import '../styles/globals.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 Modal.setAppElement('#__next');
 

@@ -15,6 +15,7 @@ export const actionTypes = {
 
 // actions
 export const setWeddingId = createAction(actionTypes.SET_WEDDING_COUPLE_ID, id => id)();
+export const setWeddingGalleryIndex = createAction(actionTypes.SET_WEDDING_GALLERY_INDEX, idx => idx)();
 export const getPageList = () => ({ type: actionTypes.GET_WEDDING_PAGE_LIST });
 export const getWedding = (id: string) => ({ type: actionTypes.GET_WEDDING_INFO, payload: id, meta: id });
 

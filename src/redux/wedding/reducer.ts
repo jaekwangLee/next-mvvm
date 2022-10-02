@@ -3,6 +3,7 @@ import { createReducer } from 'typesafe-actions';
 import { HYDRATE } from 'next-redux-wrapper';
 import { actionTypes } from './actions';
 import { WeddingInitialState } from './types';
+import { handleAsyncActionsById } from '@redux/util';
 
 const initialState: WeddingInitialState = {
     info: undefined,
@@ -12,8 +13,9 @@ const initialState: WeddingInitialState = {
 
 const appReducer = createReducer(initialState, {
     [HYDRATE]: producer((draft, { payload }) => payload),
+    // loading~~
     [actionTypes.GET_WEDDING_INFO]: producer((draft, { payload }) => {
-        // loading~~
+        console.log('loading: ', payload);
     }),
     [actionTypes.GET_WEDDING_INFO_SUCCESS]: producer((draft, { payload }) => {
         console.log('success: ', payload);

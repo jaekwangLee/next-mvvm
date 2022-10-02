@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-export const WeddingGalleryList = ({ countPerRow, images }: { countPerRow: 2 | 3; images: any[] }) => {
-    const [innerWidth, setInnerWidth] = useState(0);
-    useEffect(() => {
-        setInnerWidth(window.innerWidth);
-    }, []);
-
-    const imageWidth = countPerRow === 3 ? (innerWidth - 12) / countPerRow : (innerWidth - 6) / countPerRow;
-    const imageHeight = countPerRow === 3 ? (innerWidth - 12) / countPerRow : (innerWidth - 6) / countPerRow;
+export const WeddingGalleryList = ({
+    windowWidth,
+    countPerRow,
+    images,
+    showImage
+}: {
+    windowWidth: number;
+    countPerRow: 2 | 3;
+    images: any[];
+    showImage: (idx: number) => void;
+}) => {
+    const imageWidth = countPerRow === 3 ? (windowWidth - 24) / countPerRow : (windowWidth - 16) / countPerRow;
+    const imageHeight = countPerRow === 3 ? (windowWidth - 24) / countPerRow : (windowWidth - 16) / countPerRow;
 
     return (
         <GalleryContainer>
@@ -18,13 +23,15 @@ export const WeddingGalleryList = ({ countPerRow, images }: { countPerRow: 2 | 3
                     images.map((image, index) => (
                         <GalleryItem
                             key={'gallery-image-' + index}
+                            onClick={() => {
+                                showImage(index);
+                            }}
                             style={{
                                 width: imageWidth,
-                                height: imageHeight
+                                height: imageHeight,
+                                backgroundImage: `url(${image})`
                             }}
-                        >
-                            <GalleryItemImage src={''} alt='웨딩갤러리이미지' />
-                        </GalleryItem>
+                        ></GalleryItem>
                     ))}
             </GalleryListContainer>
         </GalleryContainer>
@@ -49,15 +56,13 @@ const GalleryContainer = styled.section`
 const GalleryListContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-`;
-
-const GalleryItemImage = styled.img`
-    width: 100%;
-    height: 100%;
-    // object-fit: contain;
+    justify-content: space-evenly;
 `;
 
 const GalleryItem = styled.div`
     margin-bottom: 6px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
 `;

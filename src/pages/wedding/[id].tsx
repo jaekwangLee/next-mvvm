@@ -1,8 +1,7 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useEffect } from 'react';
 import { PageContainer, PageMobileOnlyWrapper } from '@components/common/container';
 import JkJyController from '@components/jkjy/jkjy.controller';
 import { NextPageContext } from 'next';
-import { getWeddingSaga } from '@redux/wedding';
 import { getWeddingPages } from 'api/wedding';
 
 function WeddingJkjyPage(props: { id: string }) {
