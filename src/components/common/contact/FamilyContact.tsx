@@ -32,7 +32,7 @@ export const FamilyContact = ({
                             </FamilyLabelText>
                             {groomFather}
                         </FamilyLabelRow>
-                        <ContactSolution contact={groomFatherContact} />
+                        <ContactSolution side='groom' contact={groomFatherContact} />
                     </>
                 )}
                 {!!groomMother && !!groomMotherContact && (
@@ -43,7 +43,7 @@ export const FamilyContact = ({
                             </FamilyLabelText>
                             {groomMother}
                         </FamilyLabelRow>
-                        <ContactSolution contact={groomMotherContact} />
+                        <ContactSolution side='groom' contact={groomMotherContact} />
                     </>
                 )}
             </ContactRowContainer>
@@ -62,7 +62,7 @@ export const FamilyContact = ({
                             </FamilyLabelText>
                             {brideFather}
                         </FamilyLabelRow>
-                        <ContactSolution contact={birdeFatherContact} />
+                        <ContactSolution side='bride' contact={birdeFatherContact} />
                     </>
                 )}
                 {!!brideMother && !!brideMotherContact && (
@@ -73,7 +73,7 @@ export const FamilyContact = ({
                             </FamilyLabelText>
                             {brideMother}
                         </FamilyLabelRow>
-                        <ContactSolution contact={brideMotherContact} />
+                        <ContactSolution side='bride' contact={brideMotherContact} />
                     </>
                 )}
             </ContactRowContainer>
@@ -81,14 +81,17 @@ export const FamilyContact = ({
     );
 };
 
-const ContactSolution = ({ contact }: { contact: string }) => {
+const ContactSolution = ({ side, contact }: { side: 'bride' | 'groom'; contact: string }) => {
     return (
         <FamilyLabelRow>
             <a href={`tel:${contact}`} style={{ marginRight: '16px' }}>
-                <ContactTool src={'/images/phoneIcon.png'} alt='전화하기' />
+                <ContactTool
+                    src={side === 'bride' ? '/images/icon/bridePhone.png' : '/images/icon/groomPhone.png'}
+                    alt='전화하기'
+                />
             </a>
             <a href={`sms:${contact}`}>
-                <ContactTool src={'/images/smsIcon.png'} alt='문자하기' />
+                <ContactTool src={'/images/icon/sms.png'} alt='문자하기' />
             </a>
         </FamilyLabelRow>
     );
@@ -113,7 +116,7 @@ const FamilyLabelRow = styled.div`
 `;
 
 const FamilyLabelText = styled.p`
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 400;
 `;
 
@@ -135,8 +138,8 @@ const ContactGap = styled.span`
 `;
 
 const ContactTool = styled.img`
-    width: 24px;
-    height: 24px;
+    width: 36px;
+    height: 36px;
 `;
 
 const GroupTicker = styled.p`

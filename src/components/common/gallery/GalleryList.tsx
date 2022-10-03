@@ -17,7 +17,9 @@ export const WeddingGalleryList = ({
 
     return (
         <GalleryContainer>
-            <Title>GALLERY</Title>
+            <Header>
+                <Title>GALLERY</Title>
+            </Header>
             <GalleryListContainer>
                 {images &&
                     images.map((image, index) => (
@@ -34,23 +36,34 @@ export const WeddingGalleryList = ({
                         ></GalleryItem>
                     ))}
             </GalleryListContainer>
+            <GalleryGuide>이미지를 클릭하시면 확대보기가 가능합니다.</GalleryGuide>
         </GalleryContainer>
     );
 };
 
 const Title = styled.h4`
-    font-size: 13px;
+    font-size: 11px;
+    font-weight: bold;
     letter-spacing: 4px;
-    color: #333333;
-    font-weight: 500;
-    margin-bottom: 12px;
     text-align: center;
+    color: #333333;
+    margin-bottom: 12px;
+    border-top: 1px solid #000000;
+
+    width: 70%;
+    padding-top: 16px;
+`;
+
+const Header = styled.div`
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
 `;
 
 const GalleryContainer = styled.section`
-    background-color: #f1f1f1;
-    padding-top: 42px;
-    padding-bottom: 36px;
+    width: 100%;
+    padding-top: 52px;
+    padding-bottom: 52px;
 `;
 
 const GalleryListContainer = styled.div`
@@ -65,4 +78,12 @@ const GalleryItem = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     overflow: hidden;
+`;
+
+const GalleryGuide = styled.p`
+    font-size: 12px;
+    color: #333333;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 18px;
 `;

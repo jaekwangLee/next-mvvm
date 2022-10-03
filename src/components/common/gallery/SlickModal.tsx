@@ -57,19 +57,19 @@ export const GallerySlickModal = () => {
         arrows: false,
         slidesToShow: 5,
         centerMode: true,
-        centerPadding: 4,
+        centerPadding: '4px',
         focusOnSelect: true,
         swipeToSlide: true,
         swipe: false,
         initialSlide: wedding.galleryIndex
     };
 
-    const pagerSize = innerWidth / 5.5;
+    const pageSize = innerWidth / 5.5;
 
     return (
         <Modal isOpen={app.galleryModal} style={modalStyle}>
             <ModalHeader title='갤러리' onClose={closeModal} />
-            <SliderContainer size={window.innerHeight - pagerSize - 48}>
+            <SliderContainer size={window.innerHeight - pageSize - 48}>
                 <Slider
                     className='main-slider'
                     asNavFor={pagingSlick}
@@ -94,7 +94,7 @@ export const GallerySlickModal = () => {
                         <CustomPagingElement
                             key={'gallery-main-paging-content-' + index}
                             source={image}
-                            size={pagerSize}
+                            size={pageSize}
                         />
                     ))}
                 </Slider>

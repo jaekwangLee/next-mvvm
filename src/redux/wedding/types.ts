@@ -2,7 +2,7 @@ type WeddingInfo = {
     place: string;
     store: string;
     mainPhoto: string;
-    date: string;
+    date: Date;
     galleries: string[];
     poem?: string;
     groom: {

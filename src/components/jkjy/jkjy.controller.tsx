@@ -1,5 +1,6 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import dayjs from 'dayjs';
 
 import { PhotoNamePlaceMainSection } from '@components/common/main/PhotoNamePlace';
 import { BridePoem } from '@components/common/setence/BridePoem';
@@ -10,6 +11,9 @@ import { GallerySlickModal } from '@components/common/gallery/SlickModal';
 import { useWedding } from './jkjy.viewModel';
 import { updateGalleryModal } from '@redux/app';
 import { setWeddingGalleryIndex } from '@redux/wedding';
+import { DatePhotoNameMainSection } from '@components/common/main/DatePhotoName';
+import { getWeddingDate } from '@libs/day';
+import { BasicTextBanner } from '@components/common/banner/TextBanner';
 
 function JkJyController({ id }: { id: string }) {
     const dispatch = useDispatch();
@@ -34,13 +38,9 @@ function JkJyController({ id }: { id: string }) {
         dispatch(updateGalleryModal(true));
     };
 
-    const mainPhoto = '/images/main_jkjy.jpg';
     const groom = '이재광';
     const bride = '서지예';
-    const weddingDate = '2023. 03. 12. 일요일 오전 11:00';
     const weddingHole = '수원 루클라비 웨딩홀';
-    const poem =
-        '서로가 마주보며 다져온 사랑을\n이제 함께 한 곳을 바라보며\n걸어갈 수 있는 큰 사랑으로 키우고자 합니다.\n저희 두 사람이 사랑의 이름으로\n지켜나갈 수 있게 앞날을\n축복해 주시면 감사하겠습니다.';
     const groomContact = '01080059417';
     const brideContact = '01095044220';
     const groomParent = {
@@ -63,15 +63,16 @@ function JkJyController({ id }: { id: string }) {
 
     return (
         <>
-            <PhotoNamePlaceMainSection
-                title='우리결혼합니다'
-                uri={mainPhoto}
+            <DatePhotoNameMainSection
+                day={dayjs(info.date).format('M月D日')}
+                date={getWeddingDate(info.date)}
+                uri={info.galleries[0]}
                 man={groom}
                 woman={bride}
-                date={weddingDate}
                 place={weddingHole}
             />
-            <BridePoem poem={poem.split('\n')} />
+            {!!info.poem && <BridePoem title='우리결혼합니다' poem={info.poem.split('\n')} />}
+            <BasicTextBanner image={'wedding1.jpeg'} text={'소중한 당신을 초대합니다'} />
             <BasicContact groom={groomContact} bride={brideContact} />
             <FamilyContact
                 groomFather={groomParent.father}

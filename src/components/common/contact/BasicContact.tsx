@@ -8,19 +8,19 @@ export const BasicContact = ({ groom, bride }: { groom: string; bride: string })
                 <GBRow style={{ marginBottom: '16px' }}>
                     <GBLabel>신랑에게 연락하기</GBLabel>
                     <Linked href={`tel:${groom}`}>
-                        <GBIcon src={'/images/phoneIcon.png'} alt='신랑에게 전화하기' />
+                        <GBIcon src={'/images/icon/groomPhone.png'} alt='신랑에게 전화하기' />
                     </Linked>
                     <Linked href={`sms:${groom}`}>
-                        <GBIcon src={'/images/smsIcon.png'} alt='신랑에게 문자하기' />
+                        <GBIcon src={'/images/icon/sms.png'} alt='신랑에게 문자하기' />
                     </Linked>
                 </GBRow>
                 <GBRow>
                     <GBLabel>신부에게 연락하기</GBLabel>
                     <Linked href={`tel:${bride}`}>
-                        <GBIcon src={'/images/phoneIcon.png'} alt='신부에게 전화하기' />
+                        <GBIcon src={'/images/icon/bridePhone.png'} alt='신부에게 전화하기' />
                     </Linked>
                     <Linked href={`sms:${bride}`}>
-                        <GBIcon src={'/images/smsIcon.png'} alt='신부에게 문자하기' />
+                        <GBIcon src={'/images/icon/sms.png'} alt='신부에게 문자하기' />
                     </Linked>
                 </GBRow>
             </GBContainer>
@@ -50,8 +50,8 @@ const GBRow = styled.div`
 `;
 
 const GBLabel = styled.span`
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 400;
     color: #333333;
 `;
 
@@ -61,8 +61,8 @@ const Linked = styled.a`
 `;
 
 const GBIcon = styled.img`
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
 `;
 
 const FBContainer = styled.div``;
