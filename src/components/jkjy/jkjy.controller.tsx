@@ -14,6 +14,8 @@ import { setWeddingGalleryIndex } from '@redux/wedding';
 import { DatePhotoNameMainSection } from '@components/common/main/DatePhotoName';
 import { getWeddingDate } from '@libs/day';
 import { BasicTextBanner } from '@components/common/banner/TextBanner';
+import { MapWithTransporter } from '@components/common/maps/MapWithTransporter';
+import { PlaceAddress } from '@components/common/maps/PlaceAddress';
 
 function JkJyController({ id }: { id: string }) {
     const dispatch = useDispatch();
@@ -40,7 +42,6 @@ function JkJyController({ id }: { id: string }) {
 
     const groom = '이재광';
     const bride = '서지예';
-    const weddingHole = '수원 루클라비 웨딩홀';
     const groomContact = '01080059417';
     const brideContact = '01095044220';
     const groomParent = {
@@ -69,7 +70,7 @@ function JkJyController({ id }: { id: string }) {
                 uri={info.galleries[0]}
                 man={groom}
                 woman={bride}
-                place={weddingHole}
+                store={info.store}
             />
             {!!info.poem && <BridePoem title='우리결혼합니다' poem={info.poem.split('\n')} />}
             <BasicTextBanner image={'wedding1.jpeg'} text={'소중한 당신을 초대합니다'} />
@@ -93,6 +94,8 @@ function JkJyController({ id }: { id: string }) {
                 />
             )}
             <GallerySlickModal />
+            <PlaceAddress contact={info.wholeContact} store={info.store} address={info.place} />
+            <MapWithTransporter />
         </>
     );
 }

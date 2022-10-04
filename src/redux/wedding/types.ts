@@ -3,6 +3,7 @@ type WeddingInfo = {
     store: string;
     mainPhoto: string;
     date: Date;
+    wholeContact: string;
     galleries: string[];
     poem?: string;
     groom: {

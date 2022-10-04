@@ -7,14 +7,14 @@ export const DatePhotoNameMainSection = ({
     uri,
     man,
     woman,
-    place
+    store
 }: {
     day: string;
     date: string;
     uri: string;
     man: string;
     woman: string;
-    place: string;
+    store: string;
 }) => {
     return (
         <MainSection>
@@ -29,7 +29,7 @@ export const DatePhotoNameMainSection = ({
                     <span>{woman}</span>
                 </CoupleName>
                 <WeddingPlacTime>{date}</WeddingPlacTime>
-                <WeddingPlacTime>{place}</WeddingPlacTime>
+                <WeddingPlacTime>{store}</WeddingPlacTime>
             </CoupleNameWrapper>
         </MainSection>
     );
@@ -37,7 +37,7 @@ export const DatePhotoNameMainSection = ({
 
 const MainSection = styled.section`
     width: 100%;
-    min-height: 100vh;
+    min-height: 90vh;
     background-color: white;
     display: flex;
     flex-direction: column;

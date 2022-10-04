@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { HeadDivider } from '../divider/HeadDivider';
 
 export const WeddingGalleryList = ({
     windowWidth,
@@ -17,9 +18,7 @@ export const WeddingGalleryList = ({
 
     return (
         <GalleryContainer>
-            <Header>
-                <Title>GALLERY</Title>
-            </Header>
+            <HeadDivider title='GALLERY' />
             <GalleryListContainer>
                 {images &&
                     images.map((image, index) => (
@@ -40,25 +39,6 @@ export const WeddingGalleryList = ({
         </GalleryContainer>
     );
 };
-
-const Title = styled.h4`
-    font-size: 11px;
-    font-weight: bold;
-    letter-spacing: 4px;
-    text-align: center;
-    color: #333333;
-    margin-bottom: 12px;
-    border-top: 1px solid #000000;
-
-    width: 70%;
-    padding-top: 16px;
-`;
-
-const Header = styled.div`
-    margin-bottom: 40px;
-    display: flex;
-    justify-content: center;
-`;
 
 const GalleryContainer = styled.section`
     width: 100%;

@@ -14,8 +14,5 @@ export function useWedding(id: string) {
         dispatch(getWedding(id));
     }, [dispatch, id]);
 
-    console.log(app);
-    console.log(wedding);
-
     return { info: wedding.info };
 }
