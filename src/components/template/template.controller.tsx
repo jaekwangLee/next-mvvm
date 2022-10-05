@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import dayjs from 'dayjs';
 
 import { useWedding } from './template.viewModel';
-import { updateGalleryModal } from '@redux/app';
+import { AccountInfo, setAccountInfo, updateAccountModal, updateGalleryModal } from '@redux/app';
 import { setWeddingGalleryIndex } from '@redux/wedding';
 import { getWeddingDate } from '@libs/day';
 import { BridePoem } from '@components/common/setence/BridePoem';
@@ -17,6 +17,7 @@ import { KakaoMapView } from '@components/common/maps/KakaoMap';
 import { PlaceAddress } from '@components/common/maps/PlaceAddress';
 import { WeddingShopTransportGuide } from '@components/common/maps/TransportGuide';
 import { GroomBirdeAccount } from '@components/common/account/GroomBrideAccount';
+import { AccountModal } from '@components/common/account/AccountModal';
 
 function JkJyController({ id }: { id: string }) {
     const dispatch = useDispatch();
@@ -32,7 +33,7 @@ function JkJyController({ id }: { id: string }) {
     }, []);
 
     const resizeInnerWidth = () => {
-        setInnerWidth(window.innerWidth);
+        setInnerWidth(window.innerWidth > 576 ? 576 : window.innerWidth);
     };
 
     const openGalleryModal = (imageIndex: number) => {
@@ -40,21 +41,9 @@ function JkJyController({ id }: { id: string }) {
         dispatch(updateGalleryModal(true));
     };
 
-    const groom = '이재광';
-    const bride = '서지예';
-    const groomContact = '01080059417';
-    const brideContact = '01095044220';
-    const groomParent = {
-        father: '',
-        mother: '허경희',
-        fatherContact: '',
-        motherContact: '01045229417'
-    };
-    const brideParent = {
-        father: '서기영',
-        mother: '최경애',
-        fatherContact: '01045229417',
-        motherContact: '01045229417'
+    const openAccountModal = (info: AccountInfo) => {
+        dispatch(setAccountInfo(info));
+        dispatch(updateAccountModal(true));
     };
 
     console.log('info: ', info);
@@ -68,22 +57,22 @@ function JkJyController({ id }: { id: string }) {
                 day={dayjs(info.date).format('M月D日')}
                 date={getWeddingDate(info.date)}
                 uri={info.galleries[0]}
-                man={groom}
-                woman={bride}
+                man={info.groom.name}
+                woman={info.bride.name}
                 store={info.store}
             />
             {!!info.poem && <BridePoem title='우리결혼합니다' poem={info.poem.split('\n')} />}
             <BasicTextBanner image={'wedding1.jpeg'} text={'소중한 당신을 초대합니다'} />
-            <BasicContact groom={groomContact} bride={brideContact} />
+            <BasicContact groom={info.groom.contact} bride={info.bride.contact} />
             <FamilyContact
-                groomFather={groomParent.father}
-                groomFatherContact={groomParent.fatherContact}
-                groomMother={groomParent.mother}
-                groomMotherContact={groomParent.motherContact}
-                brideFather={brideParent.father}
-                birdeFatherContact={brideParent.fatherContact}
-                brideMother={brideParent.mother}
-                brideMotherContact={brideParent.motherContact}
+                groomFather={info.groom.father}
+                groomFatherContact={info.groom.fatherContact}
+                groomMother={info.groom.mother}
+                groomMotherContact={info.groom.motherContact}
+                brideFather={info.bride.father}
+                birdeFatherContact={info.bride.fatherContact}
+                brideMother={info.bride.mother}
+                brideMotherContact={info.bride.motherContact}
             />
             {info.galleries && info.galleries.length > 0 && (
                 <WeddingGalleryList
@@ -93,7 +82,6 @@ function JkJyController({ id }: { id: string }) {
                     showImage={openGalleryModal}
                 />
             )}
-            <GallerySlickModal />
             <PlaceAddress contact={info.wholeContact} store={info.store} address={info.place} />
             <KakaoMapView mapImageSource={info.wholeAddressLink} />
             <WeddingShopTransportGuide
@@ -103,7 +91,16 @@ function JkJyController({ id }: { id: string }) {
                 rentBus={info.parking.rentBus}
                 notice={info.parking.notice}
             />
-            <GroomBirdeAccount />
+            <GroomBirdeAccount
+                openGroomModal={() => {
+                    openAccountModal(info.groom.account);
+                }}
+                openBrideModal={() => {
+                    openAccountModal(info.bride.account);
+                }}
+            />
+            <GallerySlickModal />
+            <AccountModal />
         </>
     );
 }

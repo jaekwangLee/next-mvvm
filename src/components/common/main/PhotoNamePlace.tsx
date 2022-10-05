@@ -50,8 +50,10 @@ const Title = styled.h4`
 `;
 
 const MainImage = styled.img`
-    width: 72vw;
-    height: 72vw;
+    width: 70vw;
+    height: 70vw;
+    max-width: 403px;
+    max-height: 403px;
     object-fit: contain;
     margin-bottom: 20px;
 `;

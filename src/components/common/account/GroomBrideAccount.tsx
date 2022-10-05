@@ -1,8 +1,15 @@
+import { AccountInfo } from '@redux/app';
 import React from 'react';
 import styled from 'styled-components';
 import { HeadDivider } from '../divider/HeadDivider';
 
-export const GroomBirdeAccount = () => {
+export const GroomBirdeAccount = ({
+    openGroomModal,
+    openBrideModal
+}: {
+    openGroomModal: () => void;
+    openBrideModal: () => void;
+}) => {
     return (
         <AccountSection>
             <HeadDivider title='축하의 마음 전달하기' />
@@ -10,13 +17,13 @@ export const GroomBirdeAccount = () => {
             <AccountRow>
                 <AccountLabel>신랑측</AccountLabel>
                 <AccountButton bgColor='#77c0e9'>
-                    <AccountText>계좌번호 보기</AccountText>
+                    <AccountText onClick={openGroomModal}>계좌번호 보기</AccountText>
                 </AccountButton>
             </AccountRow>
             <AccountRow>
                 <AccountLabel>신부측</AccountLabel>
                 <AccountButton bgColor='#f79e9e'>
-                    <AccountText>계좌번호 보기</AccountText>
+                    <AccountText onClick={openBrideModal}>계좌번호 보기</AccountText>
                 </AccountButton>
             </AccountRow>
         </AccountSection>

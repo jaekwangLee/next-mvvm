@@ -1,3 +1,5 @@
+import { AccountInfo } from '@redux/app';
+
 type WeddingInfo = {
     place: string;
     store: string;
@@ -16,17 +18,21 @@ type WeddingInfo = {
     poem?: string;
     groom: {
         name: string;
+        contact: string;
         father?: string;
         fatherContact?: string;
         mother?: string;
         motherContact: string;
+        account: AccountInfo;
     };
     bride: {
         name: string;
+        contact: string;
         father?: string;
         fatherContact?: string;
         mother?: string;
         motherContact: string;
+        account: AccountInfo;
     };
 };
 

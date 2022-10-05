@@ -25,9 +25,9 @@ const MapContainer = styled.div`
 
 const StyledMap = styled.div`
     width: 100vw;
-    max-width: 500px;
+    max-width: 576px;
     height: 56vw;
-    max-height: 280px;
+    max-height: 323px;
     margin: 0 auto;
 
     position: relative;

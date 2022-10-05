@@ -26,6 +26,13 @@ export const getDay = (date: Date) => {
     }
 };
 
+export const getDate = (date: Date) => {
+    const hour = dayjs(date).get('hour');
+    const minute = dayjs(date).get('minute');
+
+    return `${hour}시${minute > 0 ? +' ' + minute + '분' : ''}`;
+};
+
 export const getWeddingDate = (date: Date) => {
-    return `${getDay(date)} ${getMeridien(date)} ${dayjs(date).format('H시 m분')}`;
+    return `${getDay(date)} ${getMeridien(date)} ${getDate(date)}`;
 };

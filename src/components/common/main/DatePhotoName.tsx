@@ -43,10 +43,16 @@ const MainSection = styled.section`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    @media (min-width: 430px) {
+        padding-top: 52px;
+        padding-bottom: 52px;
+    }
 `;
 
 const DateWrapper = styled.div`
     width: 70vw;
+    max-width: 403px;
     border-left: 1px solid #000000;
     margin-bottom: 26px;
 `;
@@ -62,6 +68,8 @@ const DateText = styled.p`
 const MainImage = styled.div`
     width: 70vw;
     height: 70vw;
+    max-width: 403px;
+    max-height: 403px;
     background-image: ${(props: { image: string }) => `url(${props.image})`};
     background-position: 50% 50%;
     background-repeat: no-repeat;
@@ -72,6 +80,7 @@ const MainImage = styled.div`
 const CoupleNameWrapper = styled.div`
     margin-top: 16px;
     width: 70vw;
+    max-width: 403px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
