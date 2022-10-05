@@ -4,6 +4,14 @@ type WeddingInfo = {
     mainPhoto: string;
     date: Date;
     wholeContact: string;
+    wholeAddressLink: string;
+    parking: {
+        park: string;
+        subway?: string;
+        bus?: string;
+        rentBus?: string;
+        notice?: string;
+    };
     galleries: string[];
     poem?: string;
     groom: {

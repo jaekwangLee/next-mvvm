@@ -2,20 +2,21 @@ import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import dayjs from 'dayjs';
 
-import { PhotoNamePlaceMainSection } from '@components/common/main/PhotoNamePlace';
+import { useWedding } from './template.viewModel';
+import { updateGalleryModal } from '@redux/app';
+import { setWeddingGalleryIndex } from '@redux/wedding';
+import { getWeddingDate } from '@libs/day';
 import { BridePoem } from '@components/common/setence/BridePoem';
 import { BasicContact } from '@components/common/contact/BasicContact';
 import { FamilyContact } from '@components/common/contact/FamilyContact';
 import { WeddingGalleryList } from '@components/common/gallery/GalleryList';
 import { GallerySlickModal } from '@components/common/gallery/SlickModal';
-import { useWedding } from './jkjy.viewModel';
-import { updateGalleryModal } from '@redux/app';
-import { setWeddingGalleryIndex } from '@redux/wedding';
 import { DatePhotoNameMainSection } from '@components/common/main/DatePhotoName';
-import { getWeddingDate } from '@libs/day';
 import { BasicTextBanner } from '@components/common/banner/TextBanner';
-import { MapWithTransporter } from '@components/common/maps/MapWithTransporter';
+import { KakaoMapView } from '@components/common/maps/KakaoMap';
 import { PlaceAddress } from '@components/common/maps/PlaceAddress';
+import { WeddingShopTransportGuide } from '@components/common/maps/TransportGuide';
+import { GroomBirdeAccount } from '@components/common/account/GroomBrideAccount';
 
 function JkJyController({ id }: { id: string }) {
     const dispatch = useDispatch();
@@ -35,7 +36,6 @@ function JkJyController({ id }: { id: string }) {
     };
 
     const openGalleryModal = (imageIndex: number) => {
-        console.log(imageIndex);
         dispatch(setWeddingGalleryIndex(imageIndex));
         dispatch(updateGalleryModal(true));
     };
@@ -95,7 +95,15 @@ function JkJyController({ id }: { id: string }) {
             )}
             <GallerySlickModal />
             <PlaceAddress contact={info.wholeContact} store={info.store} address={info.place} />
-            <MapWithTransporter />
+            <KakaoMapView mapImageSource={info.wholeAddressLink} />
+            <WeddingShopTransportGuide
+                subway={info.parking.subway}
+                bus={info.parking.bus}
+                park={info.parking.park}
+                rentBus={info.parking.rentBus}
+                notice={info.parking.notice}
+            />
+            <GroomBirdeAccount />
         </>
     );
 }

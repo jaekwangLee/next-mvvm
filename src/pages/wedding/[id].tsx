@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { PageContainer, PageMobileOnlyWrapper } from '@components/common/container';
-import JkJyController from '@components/jkjy/jkjy.controller';
+import Template from '@components/template/template.controller';
 import { NextPageContext } from 'next';
 import { getWeddingPages } from 'api/wedding';
 
@@ -8,7 +8,7 @@ function WeddingJkjyPage(props: { id: string }) {
     return (
         <PageContainer>
             <PageMobileOnlyWrapper>
-                <JkJyController {...props} />
+                <Template {...props} />
             </PageMobileOnlyWrapper>
         </PageContainer>
     );

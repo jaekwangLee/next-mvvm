@@ -5,13 +5,20 @@ import { actionTypes } from './actions';
 import { AppInitialState } from './types';
 
 const initialState: AppInitialState = {
-    galleryModal: false
+    galleryModal: false,
+    accountModal: false
 };
 
 const appReducer = createReducer(initialState, {
     [HYDRATE]: producer((draft, { payload }) => payload),
     [actionTypes.SET_GALLERY_MODAL_STATE]: producer((draft, { payload, meta }) => {
         draft['galleryModal'] = payload;
+    }),
+    [actionTypes.SET_ACCOUNT_MODAL_STATE]: producer((draft, { payload, meta }) => {
+        draft['accountModal'] = payload;
+    }),
+    [actionTypes.SET_ACCOUNT_INFO]: producer((draft, { payload, meta }) => {
+        draft['accountInfo'] = payload || null;
     })
 });
 

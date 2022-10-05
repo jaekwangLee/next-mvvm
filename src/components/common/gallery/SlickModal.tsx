@@ -109,7 +109,7 @@ const CustomPagingElement = ({ source, size }: { size: number; source?: string }
     return <ListContentContainer size={size} style={{ backgroundImage: `url(${source})` }}></ListContentContainer>;
 };
 
-const ModalHeader = ({ title, onClose }: { title: string; onClose: () => void }) => (
+export const ModalHeader = ({ title, onClose }: { title: string; onClose: () => void }) => (
     <HeaderContainer>
         <HeaderTitle>{title}</HeaderTitle>
         <HeaderCloseButtonWrapper onClick={onClose}>
