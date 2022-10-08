@@ -10,6 +10,9 @@ function WeddingJkjyPage(props: { id: string }) {
             <PageMobileOnlyWrapper>
                 <Template {...props} />
             </PageMobileOnlyWrapper>
+            <div style={{ position: 'fixed', top: '0px', left: '0px', width: '100%', height: '1px' }}>
+                <div id='page-container' style={{ width: '100%', height: '100%' }}></div>
+            </div>
         </PageContainer>
     );
 }

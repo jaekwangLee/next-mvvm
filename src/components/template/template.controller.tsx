@@ -18,11 +18,14 @@ import { PlaceAddress } from '@components/common/maps/PlaceAddress';
 import { WeddingShopTransportGuide } from '@components/common/maps/TransportGuide';
 import { GroomBirdeAccount } from '@components/common/account/GroomBrideAccount';
 import { AccountModal } from '@components/common/account/AccountModal';
+import { useFlowerEffect } from '@components/common/effect/flowerEffect';
+import { ReviewInput } from '@components/common/message/ReviewInput';
 
 function JkJyController({ id }: { id: string }) {
     const dispatch = useDispatch();
     const { info } = useWedding(id);
     const [innerWidth, setInnerWidth] = useState(0);
+    useFlowerEffect();
 
     useEffect(() => {
         resizeInnerWidth();
@@ -99,6 +102,7 @@ function JkJyController({ id }: { id: string }) {
                     openAccountModal(info.bride.account);
                 }}
             />
+            <ReviewInput />
             <GallerySlickModal />
             <AccountModal />
         </>

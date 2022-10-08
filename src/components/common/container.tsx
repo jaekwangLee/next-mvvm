@@ -30,4 +30,5 @@ export const PageMobileOnlyWrapper = styled.div`
     width: 100%;
     max-width: 768px;
     height: auto;
+    position: relative;
 `;

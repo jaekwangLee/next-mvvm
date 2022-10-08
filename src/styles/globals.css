@@ -43,3 +43,19 @@ a:focus {
     background: black; */
   }
 }
+
+.dot {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  /* background: url(https://image.ibb.co/kyUHab/rose.png); */
+  background: url(https://wedding-cloud.s3.ap-northeast-2.amazonaws.com/sakura1-removebg-preview.png);
+  background-size: 100% 100%;
+}
+
+#logo {
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  border-radius: 10px;
+}
