@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import { useWedding } from './template.viewModel';
 import { AccountInfo, setAccountInfo, updateAccountModal, updateGalleryModal } from '@redux/app';
 import { setWeddingGalleryIndex } from '@redux/wedding';
-import { getWeddingDate } from '@libs/day';
+import { getWeddingDate } from '@utils/day';
 import { BridePoem } from '@components/common/setence/BridePoem';
 import { BasicContact } from '@components/common/contact/BasicContact';
 import { FamilyContact } from '@components/common/contact/FamilyContact';
@@ -81,7 +81,7 @@ function JkJyController({ id }: { id: string }) {
                 <WeddingGalleryList
                     countPerRow={3}
                     windowWidth={innerWidth}
-                    images={info.galleries}
+                    images={info.galleries.slice(0, 6)}
                     showImage={openGalleryModal}
                 />
             )}
