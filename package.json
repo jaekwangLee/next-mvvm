@@ -8,7 +8,7 @@
     "start": "NODE_ENV=production node server.js",
     "test": "NODE_ENV=development node server.js",
     "lint": "next lint",
-    "install": "sh ./scripts/start.sh",
+    "init": "sh ./scripts/start.sh",
     "restart": "sh ./scripts/restart.sh"
   },
   "dependencies": {
