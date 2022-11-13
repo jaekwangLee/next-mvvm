@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production next start",
     "test": "NODE_ENV=development next start",
     "lint": "next lint",
     "init": "sh ./scripts/start.sh",
