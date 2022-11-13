@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://self-made.cloud
+
+# Sitemaps
+Sitemap: https://self-made.cloud/sitemap.xml

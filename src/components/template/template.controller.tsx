@@ -5,6 +5,7 @@ import dayjs from 'dayjs';
 import { useWedding } from './template.viewModel';
 import { AccountInfo, setAccountInfo, updateAccountModal, updateGalleryModal } from '@redux/app';
 import { setWeddingGalleryIndex } from '@redux/wedding';
+import { WeddingInfo } from '@redux/wedding/types';
 import { getWeddingDate } from '@utils/day';
 import { BridePoem } from '@components/common/setence/BridePoem';
 import { BasicContact } from '@components/common/contact/BasicContact';
@@ -21,9 +22,9 @@ import { AccountModal } from '@components/common/account/AccountModal';
 import { useFlowerEffect } from '@components/common/effect/flowerEffect';
 import { ReviewInput } from '@components/common/message/ReviewInput';
 
-function JkJyController({ id }: { id: string }) {
+function JkJyController({ info }: { info?: WeddingInfo }) {
     const dispatch = useDispatch();
-    const { info } = useWedding(id);
+    // const { info } = useWedding(id);
     const [innerWidth, setInnerWidth] = useState(0);
     useFlowerEffect();
 
@@ -49,7 +50,6 @@ function JkJyController({ id }: { id: string }) {
         dispatch(updateAccountModal(true));
     };
 
-    console.log('info: ', info);
     if (!info) {
         return <></>;
     }
@@ -59,7 +59,7 @@ function JkJyController({ id }: { id: string }) {
             <DatePhotoNameMainSection
                 day={dayjs(info.date).format('M月D日')}
                 date={getWeddingDate(info.date)}
-                uri={info.galleries[0]}
+                uri={info.mainPhoto}
                 man={info.groom.name}
                 woman={info.bride.name}
                 store={info.store}

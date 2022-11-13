@@ -43,8 +43,6 @@ export const AccountModal = () => {
         }, 300);
     };
 
-    console.log('modal: ', app.accountInfo);
-
     return (
         <Modal isOpen={app.accountModal} style={modalStyle}>
             <CenterModalContainer>

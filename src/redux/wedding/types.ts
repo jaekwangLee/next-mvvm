@@ -1,6 +1,6 @@
 import { AccountInfo } from '@redux/app';
 
-type WeddingInfo = {
+export type WeddingInfo = {
     place: string;
     store: string;
     mainPhoto: string;

@@ -2,18 +2,46 @@ import React, { useEffect } from 'react';
 import { PageContainer, PageMobileOnlyWrapper } from '@components/common/container';
 import Template from '@components/template/template.controller';
 import { NextPageContext } from 'next';
+import { NextSeo } from 'next-seo';
 import { getWeddingPages } from 'api/wedding';
+import { useWedding } from '@components/template/template.viewModel';
 
 function WeddingJkjyPage(props: { id: string }) {
+    const { info } = useWedding(props.id);
+    const title = info
+        ? `모바일 청첩장 도착: 신랑 ${info?.groom.name}, 신부 ${info?.bride.name}의 결혼식에 당신을 초대합니다`
+        : '';
+    const desc = info
+        ? `신랑 ${info?.groom.name}, 신부 ${info?.bride.name}의 결혼식에 참석하여 축복해주세요. 신랑, 신부님이 당신의 축복을 진심으로 기다리고있습니다.`
+        : '';
     return (
-        <PageContainer>
-            <PageMobileOnlyWrapper>
-                <Template {...props} />
-            </PageMobileOnlyWrapper>
-            <div style={{ position: 'fixed', top: '0px', left: '0px', width: '100%', height: '1px' }}>
-                <div id='page-container' style={{ width: '100%', height: '100%' }}></div>
-            </div>
-        </PageContainer>
+        <>
+            <NextSeo
+                title={title}
+                description={desc}
+                openGraph={{
+                    type: 'website',
+                    url: `https://self-made.cloud/wedding/${props.id}`,
+                    title: title,
+                    description: desc,
+                    images: [
+                        {
+                            url: info?.mainPhoto || '',
+                            width: 800,
+                            height: 400
+                        }
+                    ]
+                }}
+            />
+            <PageContainer>
+                <PageMobileOnlyWrapper>
+                    <Template info={info} />
+                </PageMobileOnlyWrapper>
+                <div style={{ position: 'fixed', top: '0px', left: '0px', width: '100%', height: '1px' }}>
+                    <div id='page-container' style={{ width: '100%', height: '100%' }}></div>
+                </div>
+            </PageContainer>
+        </>
     );
 }
 
