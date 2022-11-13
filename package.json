@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
-    "test": "NODE_ENV=development node server.js",
+    "start": "next start",
+    "test": "NODE_ENV=development next start",
     "lint": "next lint",
     "init": "sh ./scripts/start.sh",
     "restart": "sh ./scripts/restart.sh"
