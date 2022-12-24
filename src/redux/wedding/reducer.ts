@@ -15,14 +15,13 @@ const appReducer = createReducer(initialState, {
     [HYDRATE]: producer((draft, { payload }) => payload),
     // loading~~
     [actionTypes.GET_WEDDING_INFO]: producer((draft, { payload }) => {
-        console.log('loading: ', payload);
+        // console.log('loading: ', payload);
     }),
     [actionTypes.GET_WEDDING_INFO_SUCCESS]: producer((draft, { payload }) => {
-        console.log('success: ', payload);
         draft['info'] = payload.data.data;
     }),
     [actionTypes.GET_WEDDING_INFO_ERROR]: producer((draft, { payload }) => {
-        console.log('error: ', payload);
+        // console.log('error: ', payload);
     }),
     [actionTypes.SET_WEDDING_GALLERY_INDEX]: producer((draft, { payload }) => {
         draft['galleryIndex'] = payload;

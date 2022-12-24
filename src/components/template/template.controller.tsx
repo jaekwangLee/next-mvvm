@@ -2,7 +2,6 @@ import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import dayjs from 'dayjs';
 
-import { useWedding } from './template.viewModel';
 import { AccountInfo, setAccountInfo, updateAccountModal, updateGalleryModal } from '@redux/app';
 import { setWeddingGalleryIndex } from '@redux/wedding';
 import { WeddingInfo } from '@redux/wedding/types';
@@ -21,13 +20,26 @@ import { GroomBirdeAccount } from '@components/common/account/GroomBrideAccount'
 import { AccountModal } from '@components/common/account/AccountModal';
 import { useFlowerEffect } from '@components/common/effect/flowerEffect';
 import { ReviewInput } from '@components/common/message/ReviewInput';
+import {
+    addReview,
+    deleteReview,
+    ReviewInitialState,
+    updateNewReviewState,
+    updateReviewPageState
+} from '@redux/review';
+import { clearTextSpace } from '@utils/strings';
+import { ReviewTableList } from '@components/common/table/list';
+import { TablePagination } from '@components/common/table/pagination';
 
-function JkJyController({ info }: { info?: WeddingInfo }) {
+export type ReviewInputTypes = 'name' | 'password' | 'message';
+
+function JkJyController({ info, review }: { info?: WeddingInfo; review?: ReviewInitialState }) {
     const dispatch = useDispatch();
-    // const { info } = useWedding(id);
     const [innerWidth, setInnerWidth] = useState(0);
+    const PER_PAGE = 5;
     useFlowerEffect();
 
+    console.log('review:', review);
     useEffect(() => {
         resizeInnerWidth();
         window.addEventListener('resize', resizeInnerWidth);
@@ -48,6 +60,54 @@ function JkJyController({ info }: { info?: WeddingInfo }) {
     const openAccountModal = (info: AccountInfo) => {
         dispatch(setAccountInfo(info));
         dispatch(updateAccountModal(true));
+    };
+
+    const onChangeInput = ({ type, value }: { type: ReviewInputTypes; value: string }) => {
+        dispatch(updateNewReviewState({ type, value }));
+    };
+
+    const onAddReview = () => {
+        if (!info || !review) return;
+
+        const { initialId } = info;
+        const { editReview } = review;
+        if (!editReview.name || !editReview.password || !editReview.message) return;
+
+        dispatch(
+            addReview(initialId, {
+                name: clearTextSpace(editReview.name),
+                password: clearTextSpace(editReview.password),
+                message: clearTextSpace(editReview.message)
+            })
+        );
+    };
+
+    const setPrevPage = () => {
+        const currPage = review?.reviewPage || 0;
+        const reviewLen = review?.reviews.length || 0;
+        const totalPageLen = Math.floor(reviewLen / PER_PAGE);
+        console.log(currPage, reviewLen, totalPageLen);
+        if (0 > currPage - 1) {
+            return;
+        }
+
+        dispatch(updateReviewPageState(currPage - 1));
+    };
+
+    const setNextPage = () => {
+        const currPage = review?.reviewPage || 0;
+        const reviewLen = review?.reviews.length || 0;
+        const totalPageLen = Math.floor(reviewLen / PER_PAGE);
+        console.log(currPage, reviewLen, totalPageLen);
+        if (totalPageLen < currPage + 1) {
+            return;
+        }
+
+        dispatch(updateReviewPageState(currPage + 1));
+    };
+
+    const onDeleteReviewMessage = (rvId: string, password: string) => {
+        dispatch(deleteReview(rvId, password));
     };
 
     if (!info) {
@@ -102,7 +162,25 @@ function JkJyController({ info }: { info?: WeddingInfo }) {
                     openAccountModal(info.bride.account);
                 }}
             />
-            <ReviewInput />
+            <ReviewInput onChangeInput={onChangeInput} review={review?.editReview} register={onAddReview} />
+            <ReviewTableList
+                list={review?.reviews || []}
+                currPage={review?.reviewPage || 0}
+                perPage={PER_PAGE}
+                onDelete={(rvId: string) => {
+                    const password = window.prompt('축하메시지에 설정한 비밀번호를 입력해주세요.');
+                    if (!password) return;
+
+                    onDeleteReviewMessage(rvId, password);
+                }}
+            />
+            <TablePagination
+                currentPage={review?.reviewPage || 0}
+                perPage={PER_PAGE}
+                total={review?.reviews.length || 0}
+                onPrev={setPrevPage}
+                onNext={setNextPage}
+            />
             <GallerySlickModal />
             <AccountModal />
         </>

@@ -1,19 +1,59 @@
 import React from 'react';
 import styled from 'styled-components';
-import { HeadDivider } from '../divider/HeadDivider';
 
-export const ReviewInput = () => {
+import { ReviewInputTypes } from '@components/template/template.controller';
+import { HeadDivider } from '../divider/HeadDivider';
+import { Review } from '@redux/review/types';
+
+export const ReviewInput = ({
+    review,
+    register,
+    onChangeInput
+}: {
+    review?: Review;
+    register: () => void;
+    onChangeInput: ({ type, value }: { type: ReviewInputTypes; value: string }) => void;
+}) => {
     return (
         <ReviewInputSection>
             <HeadDivider title='메시지' />
             <Comment>축하 메시지를 남겨주세요</Comment>
             <InputForm>
                 <PersonalInfoRow>
-                    <PersonalInput type='text' placeholder='이름' />
-                    <PersonalInput type='password' placeholder='비밀번호' />
+                    <PersonalInput
+                        type='name'
+                        value={review ? review.name : ''}
+                        autoCapitalize='false'
+                        autoComplete='false'
+                        placeholder='이름'
+                        maxLength={20}
+                        onChange={e => {
+                            onChangeInput({ type: 'name', value: e.target.value });
+                        }}
+                    />
+                    <PersonalInput
+                        type='password'
+                        value={review ? review.password : ''}
+                        autoCapitalize='false'
+                        autoComplete='false'
+                        placeholder='비밀번호'
+                        maxLength={8}
+                        onChange={e => {
+                            onChangeInput({ type: 'password', value: e.target.value });
+                        }}
+                    />
                 </PersonalInfoRow>
-                <MessageTextarea placeholder='메시지' />
-                <ReviewButton>등록하기</ReviewButton>
+                <MessageTextarea
+                    value={review ? review.message : ''}
+                    autoCapitalize='false'
+                    autoComplete='false'
+                    placeholder='축하 메시지'
+                    maxLength={500}
+                    onChange={e => {
+                        onChangeInput({ type: 'message', value: e.target.value });
+                    }}
+                />
+                <ReviewButton onClick={register}>등록하기</ReviewButton>
             </InputForm>
         </ReviewInputSection>
     );

@@ -1,6 +1,8 @@
 import { AccountInfo } from '@redux/app';
 
 export type WeddingInfo = {
+    couId: string;
+    initialId: string;
     place: string;
     store: string;
     mainPhoto: string;
