@@ -10,6 +10,7 @@ export default class RootDocument extends Document {
                         name='viewport'
                         content='width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no'
                     />
+                    <meta name='HandheldFriendly' content='true' />
                 </Head>
                 <body>
                     <Main />
