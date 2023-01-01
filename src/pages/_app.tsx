@@ -50,7 +50,7 @@ function WrappedApp({ Component, pageProps }: AppProps) {
                     url: 'https://self-made.cloud',
                     title: '모바일 청첩장: 신랑 이재광, 신부 서지예의 결혼식에 당신을 초대합니다',
                     description:
-                        '신랑 이재광, 신부 서지예의 결혼식에 참석하여 축복해주세요. 신랑, 신부님이 당신의 축복을 진심으로 기다리고있습니다.'
+                        '신랑 이재광, 신부 서지예의 결혼식에 참석하여 축복해주세요. 신랑, 신부님이 당신의 축복을 진심으로 기다리고있습니다.',
                     images: [
                         {
                             url: 'https://wedding-cloud.s3.ap-northeast-2.amazonaws.com/jkjy_wedding_3.jpg',
