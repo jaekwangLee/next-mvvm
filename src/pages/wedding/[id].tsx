@@ -29,7 +29,7 @@ function WeddingJkjyPage(props: { id: string }) {
                     description: desc,
                     images: [
                         {
-                            url: 'https://wedding-cloud.s3.ap-northeast-2.amazonaws.com/IMG_0742.jpg', //- info?.mainPhoto || '',
+                            url: 'https://wedding-cloud.s3.ap-northeast-2.amazonaws.com/jkjy_wedding_3.jpg', //- info?.mainPhoto || '',
                             width: 800,
                             height: 400
                         }
