@@ -26,7 +26,8 @@ const modalStyle = {
 export const AccountModal = () => {
     const dispatch = useDispatch();
     const app = useSelector((state: RootState) => state.app);
-    const _parentAccount = useRef<HTMLInputElement>(null);
+    const _fatherAccount = useRef<HTMLInputElement>(null);
+    const _motherAccount = useRef<HTMLInputElement>(null);
     const _account = useRef<HTMLInputElement>(null);
 
     const closeModal = () => {
@@ -49,18 +50,39 @@ export const AccountModal = () => {
                 <HeaderWrapper>
                     <HeaderTitle>계좌번호 안내</HeaderTitle>
                 </HeaderWrapper>
-                {!!app.accountInfo?.parentName && (
+
+                {!!app.accountInfo?.fatherName && (
                     <div style={{ marginBottom: '24px' }}>
                         <AccountRow>
-                            <AccountNameTag>예금주: {app.accountInfo?.parentName}</AccountNameTag>
-                            <AccountNameTag>{app.accountInfo.parentBank}</AccountNameTag>
+                            <AccountNameTag>예금주: {app.accountInfo?.fatherName}</AccountNameTag>
+                            <AccountNameTag>{app.accountInfo.fatherBank}</AccountNameTag>
                         </AccountRow>
                         <CopyContainer>
-                            <input ref={_parentAccount} type='hidden' value={app.accountInfo.parentAccount} />
-                            <AccountText>{app.accountInfo.parentAccount}</AccountText>
+                            <input ref={_fatherAccount} type='hidden' value={app.accountInfo.fatherAccount} />
+                            <AccountText>{app.accountInfo.fatherAccount}</AccountText>
                             <AccountCopyButton
                                 onClick={() => {
-                                    copyAccount(app.accountInfo?.parentAccount || '');
+                                    copyAccount(app.accountInfo?.fatherAccount || '');
+                                }}
+                            >
+                                복사
+                            </AccountCopyButton>
+                        </CopyContainer>
+                    </div>
+                )}
+
+                {!!app.accountInfo?.motherName && (
+                    <div style={{ marginBottom: '24px' }}>
+                        <AccountRow>
+                            <AccountNameTag>예금주: {app.accountInfo?.motherName}</AccountNameTag>
+                            <AccountNameTag>{app.accountInfo.motherBank}</AccountNameTag>
+                        </AccountRow>
+                        <CopyContainer>
+                            <input ref={_motherAccount} type='hidden' value={app.accountInfo.motherAccount} />
+                            <AccountText>{app.accountInfo.motherAccount}</AccountText>
+                            <AccountCopyButton
+                                onClick={() => {
+                                    copyAccount(app.accountInfo?.motherAccount || '');
                                 }}
                             >
                                 복사

@@ -39,7 +39,6 @@ function JkJyController({ info, review }: { info?: WeddingInfo; review?: ReviewI
     const PER_PAGE = 5;
     useFlowerEffect();
 
-    console.log('review:', review);
     useEffect(() => {
         resizeInnerWidth();
         window.addEventListener('resize', resizeInnerWidth);
@@ -125,7 +124,10 @@ function JkJyController({ info, review }: { info?: WeddingInfo; review?: ReviewI
                 store={info.store}
             />
             {!!info.poem && <BridePoem title='우리결혼합니다' poem={info.poem.split('\n')} />}
-            <BasicTextBanner image={'wedding1.jpeg'} text={'소중한 당신을 초대합니다'} />
+            <BasicTextBanner
+                image={'https://wedding-cloud.s3.ap-northeast-2.amazonaws.com/jkjy_wedding_13.jpg'}
+                text={'소중한 당신을 초대합니다'}
+            />
             <BasicContact groom={info.groom.contact} bride={info.bride.contact} />
             <FamilyContact
                 groomFather={info.groom.father}

@@ -21,14 +21,28 @@ export const WeddingShopTransportGuide = ({
                 {!!subway && (
                     <>
                         <GuideTitle>지하철 안내</GuideTitle>
-                        <GuideText>{subway}</GuideText>
+                        <GuideText>
+                            {subway.split('\n').map((_word, _idx) => (
+                                <span key={`subway_${_idx}`}>
+                                    {_word}
+                                    <br />
+                                </span>
+                            ))}
+                        </GuideText>
                         <ComponentDivider topMargin={12} bottomMargin={12} />
                     </>
                 )}
                 {!!bus && (
                     <>
                         <GuideTitle>버스 안내</GuideTitle>
-                        <GuideText>{bus}</GuideText>
+                        <GuideText>
+                            {bus.split('\n').map((_word, _idx) => (
+                                <span key={`bus_${_idx}`}>
+                                    {_word}
+                                    <br />
+                                </span>
+                            ))}
+                        </GuideText>
                         <ComponentDivider topMargin={12} bottomMargin={12} />
                     </>
                 )}
@@ -40,14 +54,28 @@ export const WeddingShopTransportGuide = ({
                     {!!rentBus && (
                         <>
                             <GuideTitle>전세 버스 안내</GuideTitle>
-                            <GuideText>{rentBus}</GuideText>
+                            <GuideText>
+                                {rentBus.split('\n').map((_word, _idx) => (
+                                    <span key={`rentBus_${_idx}`}>
+                                        {_word}
+                                        <br />
+                                    </span>
+                                ))}
+                            </GuideText>
                             <ComponentDivider topMargin={12} bottomMargin={12} />
                         </>
                     )}
                     {!!notice && (
                         <>
                             <GuideTitle>기타 안내사항</GuideTitle>
-                            <GuideText>{notice}</GuideText>
+                            <GuideText>
+                                {notice.split('\n').map((_word, _idx) => (
+                                    <span key={`notice_${_idx}`}>
+                                        {_word}
+                                        <br />
+                                    </span>
+                                ))}
+                            </GuideText>
                         </>
                     )}
                 </GuideWrapper>

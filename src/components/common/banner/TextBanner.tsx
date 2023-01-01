@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const BasicTextBanner = ({ image, text }: { image: string; text: string }) => {
     return (
-        <BasicBannerSection image={`/images/banner/${image}`}>
+        <BasicBannerSection image={image}>
             <BasicBannerImage>
                 <BasicBannerText>{text}</BasicBannerText>
             </BasicBannerImage>

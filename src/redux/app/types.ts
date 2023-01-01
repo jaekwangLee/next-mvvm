@@ -1,7 +1,10 @@
 export type AccountInfo = {
-    parentName?: string;
-    parentAccount?: string;
-    parentBank?: string;
+    fatherName?: string;
+    fatherAccount?: string;
+    fatherBank?: string;
+    motherName?: string;
+    motherAccount?: string;
+    motherBank?: string;
     name: string;
     account: string;
     bank: string;
