@@ -18,7 +18,7 @@ import { PlaceAddress } from '@components/common/maps/PlaceAddress';
 import { WeddingShopTransportGuide } from '@components/common/maps/TransportGuide';
 import { GroomBirdeAccount } from '@components/common/account/GroomBrideAccount';
 import { AccountModal } from '@components/common/account/AccountModal';
-import { useFlowerEffect } from '@components/common/effect/flowerEffect';
+import { doFallingEffect } from '@components/common/effect/flowerEffect';
 import { ReviewInput } from '@components/common/message/ReviewInput';
 import {
     addReview,
@@ -37,11 +37,13 @@ function JkJyController({ info, review }: { info?: WeddingInfo; review?: ReviewI
     const dispatch = useDispatch();
     const [innerWidth, setInnerWidth] = useState(0);
     const PER_PAGE = 5;
-    useFlowerEffect();
+    // useFlowerEffect();
 
     useEffect(() => {
         resizeInnerWidth();
         window.addEventListener('resize', resizeInnerWidth);
+        doFallingEffect();
+
         return () => {
             window.removeEventListener('reisze', resizeInnerWidth, false);
         };
