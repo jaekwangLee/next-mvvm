@@ -83,9 +83,7 @@ function JkJyController({ info, review }: { info?: WeddingInfo; review?: ReviewI
 
     const setPrevPage = () => {
         const currPage = review?.reviewPage || 0;
-        const reviewLen = review?.reviews.length || 0;
-        const totalPageLen = Math.floor(reviewLen / PER_PAGE);
-        console.log(currPage, reviewLen, totalPageLen);
+
         if (0 > currPage - 1) {
             return;
         }
@@ -97,7 +95,7 @@ function JkJyController({ info, review }: { info?: WeddingInfo; review?: ReviewI
         const currPage = review?.reviewPage || 0;
         const reviewLen = review?.reviews.length || 0;
         const totalPageLen = Math.floor(reviewLen / PER_PAGE);
-        console.log(currPage, reviewLen, totalPageLen);
+
         if (totalPageLen < currPage + 1) {
             return;
         }
@@ -155,6 +153,9 @@ function JkJyController({ info, review }: { info?: WeddingInfo; review?: ReviewI
                 park={info.parking.park}
                 rentBus={info.parking.rentBus}
                 notice={info.parking.notice}
+                weddingDate={info.date}
+                man={info.groom.name}
+                woman={info.bride.name}
             />
             <GroomBirdeAccount
                 openGroomModal={() => {
